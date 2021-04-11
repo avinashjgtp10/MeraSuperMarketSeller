@@ -1,0 +1,28 @@
+<button
+  type="button"
+  class="btn light"
+  *ngIf="btnType === 'light'"
+  (click)="onClickButton($event)"
+>
+  {{ label }}
+</button>
+
+<button
+  type="button"
+  class="btn primary"
+  *ngIf="btnType === 'primary'"
+  (click)="onClickButton($event)"
+  [disabled]="isDisabled"
+>
+  <span
+    *ngIf="isLoading"
+    class="spinner-border spinner-border-sm mr-4"
+    role="status"
+    aria-hidden="true"
+  ></span
+  >{{ label }}
+</button>
+
+<button (click)="onClickButton($event)" class="btn secondary"   *ngIf="btnType === 'secondary'">
+  {{ label }}
+</button>

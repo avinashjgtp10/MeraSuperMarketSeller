@@ -34,6 +34,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { CardComponent } from './shared/card/card.component';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { PriceMoverComponent } from './shared/price-mover/price-mover.component';
+import { ButtonsComponent } from './component/buttons/buttons.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -67,7 +68,8 @@ const customNotifierOptions: NotifierOptions = {
     AppBtnDirective,
     FooterComponent,
     CardComponent,
-    PriceMoverComponent
+    PriceMoverComponent,
+    ButtonsComponent
   ],
   imports: [
     HttpClientModule,
