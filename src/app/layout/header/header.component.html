@@ -1,0 +1,36 @@
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-expand-lg static-top sticky-top shadow mb-1 bg-white rounded pt-0">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/images/logo.svg">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive1"
+      aria-controls="navbarResponsive1" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive1">
+      <ul class="navbar-nav ml-auto align-items-center">
+        <li class="nav-item "><a class="nav-link" routerLink="/home" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/my-orders" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">My Orders</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/coupen" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">Coupen</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/contact" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact:true}">Contact</a></li>
+        <li class="dropdown"><img src="../../../assets/images/person.svg">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+            aria-expanded="false">{{sellerName}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item" *ngIf="sellerName=='User'"><a class="nav-link" routerLink="/login" [routerLinkActive]="['active']"
+              [routerLinkActiveOptions]="{exact:true}">login</a></li>
+            <li class="dropdown-item" *ngIf="sellerName!=='User'" (click)="logout()"><a href="#">Logout</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link" href="#"> <img src="../../../assets/images/bell.svg"></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

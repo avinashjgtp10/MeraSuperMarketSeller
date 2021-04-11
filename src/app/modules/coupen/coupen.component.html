@@ -1,0 +1,14 @@
+<ng-sidebar-container style="height: 100vh;">
+    <!-- A sidebar -->
+    <ng-sidebar class="sidebar" [(opened)]="_opened" [mode]="'push'">
+    <app-create-coupen></app-create-coupen>
+    </ng-sidebar>
+  
+    <!-- Page content -->
+    <div ng-sidebar-content [animate]="false">
+      <button class="border btn-dark" type="button" (click)="_toggleSidebar()" *ngIf="_showBtn">
+        <span class="navbar-toggler-icon"></span></button>
+    <app-coupen-list></app-coupen-list>
+    </div>
+  
+  </ng-sidebar-container>

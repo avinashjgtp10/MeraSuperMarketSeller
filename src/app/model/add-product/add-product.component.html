@@ -1,0 +1,272 @@
+<notifier-container style="Color: white;"></notifier-container>
+<ng-template #customNotification let-notificationData="notification">
+  <my-custom-alert type="notificationData.type">
+    {{ notificationData.message }}
+  </my-custom-alert>
+</ng-template>
+<div class="modal-header">
+  <span class="modal-title">Add Product</span>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="mt-2" [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+    <span class="title">Images <span class="limit">(Add upto 4 images)</span> </span>
+    <div class="row">
+      <div class="col-sm col-md-6">
+        <div class="row">
+          <div class="m-3 img_wrp" *ngFor="let item of images; let i=index">
+            <img [src]="item" width="100" height="100" class="imgResponsiveMax" alt="" />
+            <!-- <img src="../../../../assets/images/close.svg" height= 20 class="img-close" aria-label="Close" class="imgResponsiveMax" (click)="removeImage(i)"/> -->
+            <span class="img-close" aria-label="Close" aria-hidden="true" (click)="delete(images,i)">&times;</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm col-md-6">
+        <div class="form-group">
+          <ngx-file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+            [dropZoneClassName]="'upload-background-image'">
+            <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+              <div class="d-flex flex-column mt-5">
+                <img class="cloud" src="../../../../assets/images/cloud.svg">
+                <span>Drag and Drop files or
+                  <span type="button" (click)="openFileSelector()" class="browse"> Browse</span></span>
+                <button type="button" class="btn btn-upload">Upload</button>
+              </div>
+            </ng-template>
+          </ngx-file-drop>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="Title">Product Name</label>
+            <input type="text" formControlName="Title" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.Title.errors }" ngbAutoFocus />
+            <div *ngIf="submitted && f.Title.errors" class="invalid-feedback">
+              <div *ngIf="f.Title.errors.required">Product Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="BrandName">Brand Name</label>
+            <input type="text" formControlName="BrandName" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.BrandName.errors }" />
+            <div *ngIf="submitted && f.BrandName.errors" class="invalid-feedback">
+              <div *ngIf="f.BrandName.errors.required">Brand Name is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="Category">Select Category</label>
+            <!-- <input type="text" formControlName="Category" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.Category.errors }" /> -->
+            <select class="form-control form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+            <div *ngIf="submitted && f.Category.errors" class="invalid-feedback">
+              <div *ngIf="f.Category.errors.required">First Name is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <tag-input class="tag" [(ngModel)]='tag' formControlName="Tags" placeholder="+Add tag"></tag-input>
+            <div *ngIf="submitted && f.Tags.errors" class="invalid-feedback">
+              <div *ngIf="f.Tags.errors.required">Tag required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="Description">Description</label>
+            <!-- <p class="Description">
+              Combination of taste and health Highly nutritive source of strength of body and mind country of Origin:
+              India
+            </p> -->
+            <textarea class="form-control rounded-0" formControlName="Description" id="exampleFormControlTextarea2" rows="3"></textarea>
+
+            <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+              <div *ngIf="f.Description.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <!-- <label for="size">Size</label> -->
+            <!-- <input type="text" formControlName="size" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.size.errors }" /> -->
+            <tag-input class="tag" [(ngModel)]='size' formControlName="Size" placeholder="+Add Size"></tag-input>
+            <div *ngIf="submitted && f.Size.errors" class="invalid-feedback">
+              <div *ngIf="f.Size.errors.required">Size is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="sizeFor">For</label>
+            <!-- <input type="text" formControlName="sizeFor" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.sizeFor.errors }" /> -->
+            <div class="d-flex flex-direction-row justify-content-between mr-4">
+              <div class="form-check checkbox custom-control custom-radio custom-control-inline"
+                *ngFor="let item of sizeFor">
+                <input class="custom-control-input" type="radio" name="sizeFor" [id]="item" [value]="item">
+                <label class="custom-control-label" [for]="item">
+                  {{item}}
+                </label>
+              </div>
+            </div>
+            <div class="d-flex mt-2">
+              <div class="custom-control custom-switch" *ngFor="let item of gender ;let i = index">
+                <input type="checkbox" class="custom-control-input" [id]="item">
+                <label class="custom-control-label" [for]="item">{{item}}</label>
+              </div>
+            </div>
+            <!-- <div *ngIf="submitted && f.sizeFor.errors" class="invalid-feedback">
+              <div *ngIf="f.sizeFor.errors.required">First Name is required</div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="SellingPrice">Selling Price</label>
+          <app-price-mover [defaultVal]="100" [name]="'SellingPrice'" [addProductForm]="addProductForm"></app-price-mover>
+           
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="Color">Color</label>
+            <input type="text" formControlName="Color" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.Color.errors }" />
+            <div *ngIf="submitted && f.Color.errors" class="invalid-feedback">
+              <div *ngIf="f.Color.errors.required">Color is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="MRP">MRP</label>
+            <app-price-mover [defaultVal]="100" [name]="'MRP'" [addProductForm]="addProductForm"></app-price-mover>
+              
+            <div *ngIf="submitted && f.MRP.errors" class="invalid-feedback">
+              <div *ngIf="f.MRP.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="AvailabilityStatus">Availability Status</label>
+            <!-- <input type="text" formControlName="status" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.status.errors }" /> -->
+            <div class="d-flex mt-2">
+              <div class="custom-control custom-switch" *ngFor="let item of status ;let i = index">
+                <input type="checkbox" class="custom-control-input" [id]="item">
+                <label class="custom-control-label" [for]="item">{{item}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <div class="d-flex spec-div">
+              <label class="flex-grow-1" for="spec">Specification</label>
+              <label class="text-right add-new" (click)="add(key,value)"> +Add</label>
+            </div>
+            <div class="d-flex">
+              <input type="text" class="form-control col-sm-5" [(ngModel)]="key" placeholder="Key"
+                [ngClass]="{ 'is-invalid': isError }" [ngModelOptions]="{standalone: true}" (keyup)="isError=false;" />
+              <input type="text" class="form-control col-sm-5 ml-2" [(ngModel)]="value" placeholder="value"
+                [ngClass]="{ 'is-invalid':  isError  }" [ngModelOptions]="{standalone: true}" (keyup)="isError=false;"/>
+            </div>
+
+            <div class="d-flex mx-1 mt-2" *ngFor="let item of specifications;let i = index">
+              <label class="font-weight-bold spec col-sm-5"> {{ item.key }}</label>
+              <label class="spec col-sm-5"> {{ item.value }}</label>
+              <button type="button" class="close" aria-label="Close" (click)="delete(specifications,i)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div *ngIf="submitted && f.Specification.errors" class="invalid-feedback">
+              <div *ngIf="f.Specification.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="shipStatus">Shipable</label>
+            <!-- <input type="text" formControlName="shipStatus" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.shipStatus.errors }" /> -->
+            <div class="d-flex mt-2">
+              <div class="custom-control custom-switch" *ngFor="let item of shippableProductStatus ;let i = index">
+                <input type="checkbox" class="custom-control-input" [id]="item">
+                <label class="custom-control-label" [for]="item">{{item}}</label>
+              </div>
+            </div>
+
+            <div *ngIf="submitted && f.shipStatus.errors" class="invalid-feedback">
+              <div *ngIf="f.shipStatus.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="Delivery">Delivery Options</label>
+            <!-- <input type="text" formControlName="Delivery" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.Delivery.errors }" /> -->
+            <div class="d-flex mt-2">
+              <div class="custom-control custom-switch" *ngFor="let item of deliveryOption ;let i = index">
+                <input type="checkbox" class="custom-control-input" [id]="item.name" 
+                formControlName="Delivery" (change)="change(item.name,$event)">
+                <label class="custom-control-label" [for]="item.name">{{item.name}}</label>
+              </div>
+            </div>
+            <div *ngIf="submitted && f.Delivery.errors" class="invalid-feedback">
+              <div *ngIf="f.Delivery.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="form-group">
+            <label for="ShippingCost">Shiping Charges</label>
+            <app-price-mover [defaultVal]="100" [name]="'ShippingCost'" [addProductForm]="addProductForm"></app-price-mover>
+            <div *ngIf="submitted && f.ShippingCost.errors" class="invalid-feedback">
+              <div *ngIf="f.ShippingCost.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer form-group">
+      <button (click)="activeModal.dismiss('Cross click')" class="btn cancel">
+
+        Cancel
+      </button>
+      <button [disabled]="loading" class="btn reg">
+        <span *ngIf="loading" class=" spinner-border spinner-border-sm mr-1" ></span>
+        Add
+      </button>
+
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,160 @@
+import {Country} from './country';
+
+export const COUNTRIES: Country[] = [
+  {
+  CoupenName:"test1",
+NumberToRedeem:"100/300",
+promoDesc:"On shopping of Rs 1500 and more",
+amountOff:60,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF1"
+  },
+  {
+  CoupenName:"test2",
+NumberToRedeem:"100/300",
+promoDesc:"On shopping of Rs 1500 and more",
+amountOff:109,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF2"
+  },
+  {
+    CoupenName:"test3",
+NumberToRedeem:"100/300",
+promoDesc:"desc3",
+amountOff:9,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF3"
+  },
+  {
+    CoupenName:"test4",
+NumberToRedeem:"100/300",
+promoDesc:"desc4",
+amountOff:99,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF4"
+  },
+  {
+    CoupenName:"test5",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc5",
+    amountOff:9988,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF5"
+  },
+  {
+    CoupenName:"test6",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc6",
+    amountOff:7,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF6"
+  },
+  {
+    CoupenName:"test7",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc7",
+    amountOff:7,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF7"
+  },
+  {
+    CoupenName:"test8",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc8",
+    amountOff:8,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF8"
+  },
+  {
+    CoupenName:"test9",
+NumberToRedeem:"100/300",
+promoDesc:"desc",
+amountOff:5,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF9"
+  },
+  {
+    CoupenName:"test9",
+NumberToRedeem:"100/300",
+promoDesc:"desc",
+amountOff:50,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF10"
+  },
+  {
+    CoupenName:"test10",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc10",
+    amountOff:500,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF11"
+  },
+  {
+    CoupenName:"test11",
+    NumberToRedeem:"100/300",
+    promoDesc:"desc11",
+    amountOff:50,
+    upperLimit:"5000",
+    validFrom:"1 March 21",
+    validTill:"31 March 21",
+    userID:"testUser",
+    usageType:"single",
+    CoupenCode:"Holi2121OFF12"
+  },
+  {
+    CoupenName:"test12",
+NumberToRedeem:"100/300",
+promoDesc:"desc12",
+amountOff:60,
+upperLimit:"5000",
+validFrom:"1 March 21",
+validTill:"31 March 21",
+userID:"testUser",
+usageType:"single",
+CoupenCode:"Holi2121OFF13"
+  }
+];

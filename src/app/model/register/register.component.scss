@@ -1,0 +1,136 @@
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: 0.2;
+}
+
+.custom-class {
+  .modal-content {
+    border-radius: 15px !important;
+  }
+}
+.modal-body {
+  title {
+    font-weight: 300;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    color: #444444;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+    ng-select.ng-invalid .ng-select-container {
+      border-color: #f4516c;
+    }
+    .form-control:disabled, .form-control[readonly] {
+      background-color: white; 
+      opacity: 0.8;
+  }
+    
+    label {
+      margin-bottom: 0%;
+      font-size: 12px;
+      embed {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    .txt-input {
+      height: 48px;
+      border-radius: 40px;
+      border: 1px solid #d0c9d6;
+      outline: none;
+      padding-left: 10%;
+    }
+   
+    .input-group {
+      // width: 338px;
+      .txt-phone {
+        border-radius: 0px 40px 40px 0px;
+      }
+      .input-group-prepend span {
+        background-color: white;
+        color: #5f5f5f;
+        border-radius: 40px 0px 0px 40px;
+        border: 1px solid #d0c9d6;
+      }
+    }
+    .separator {
+      width: 100%;
+    }
+    .incorrect {
+      color: #fe0000;
+      font-size: 12px;
+      width: 66%;
+      
+    }
+    .resend {
+      color: #6ebe44;
+      font-size: 14px;
+      
+      text-align: left;
+    }
+  }
+  .align {
+    margin: 2% 20%;
+  }
+  .register-form {
+    input {
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px solid #d0c9d6;
+      outline: none;
+      box-shadow: none;
+      font-size: 14px;
+    }
+    .was-validated .form-control:invalid,
+    .form-control.is-invalid {
+      outline: none;
+      box-shadow: none;
+    }
+    label {
+      display: flex;
+    }
+  }
+}
+.modal-footer {
+  .btn {
+    height: 48px;
+    width: 130px;
+    border-radius: 40px;
+  }
+  .reg {
+    background-color: #6fba47;
+    color: #ffffff;
+  }
+  .cancel {
+    background-color: #ffffff;
+    border-color: #d0c9d6;
+  }
+}
+
+#scrollbar {
+  overflow: hidden i !important;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+@media only screen and (max-width: 576px) {
+  .align {
+    margin: 10% 5% !important;
+  }
+}

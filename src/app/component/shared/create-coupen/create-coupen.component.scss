@@ -1,0 +1,38 @@
+.btn {
+    height: 48px;
+    width: 110px;
+    border-radius: 40px;
+}
+.create {
+    background-color: #6fba47;
+    color: #ffffff;
+}
+
+.coupen-form {
+  .border{
+    padding: 5px 10px;
+  }
+    .form-group{
+        margin-bottom:0% !important;
+    }
+    label{
+        margin-bottom:0% !important;
+    }
+    input {
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px solid #d0c9d6;
+      outline: none;
+      box-shadow: none;
+      font-size: 14px;
+      background-color:transparent;
+    }
+    .was-validated .form-control:invalid,
+    .form-control.is-invalid {
+      outline: none;
+      box-shadow: none;
+    }
+    label {
+      display: flex;
+    }
+  }

@@ -1,0 +1,91 @@
+.search-input {
+    // height: 48px;
+    border-radius: 40px;
+    border: 1px solid #d0c9d6;
+    outline: none;
+    padding-left: 2%;
+    width: 450px;
+}
+.tbl-header{
+    display: table-row;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    line-height: 3;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    opacity: 0.5;
+    font-size: smaller;
+    font-weight: 600;
+}
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    font-size: smaller;
+    
+}
+.table .promoDesc{
+    width: 15%;
+}
+
+
+.card {
+    .card-header {
+        background-color: white;
+        align-items: center;
+    }
+    select {
+        width: auto;
+        border: none;
+        // border-bottom: 1px solid;
+        border-radius: 0;
+    }
+    .lbl {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 14px;
+    }
+    .cust-select {
+        width: auto;
+        padding: 5px;
+        margin: 3px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 14px;
+        outline: none;
+    }
+    .pagination {
+        display: flex;
+        margin-bottom: 0%;
+    }
+    .pagination .page-item {
+        color: black;
+        float: left;
+        // padding: 8px 16px;
+        text-decoration: none;
+    }
+    .page-link {
+        border: none;
+        color: rgba(0, 0, 0, 0.5);
+    }
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #f89838 !important;
+        background-color: white;
+        outline: none;
+        box-shadow: none;
+        /* border-color: #007bff; */
+    }
+    .card .page-link:hover{
+        background-color: white;
+    }
+}
+
+
+@media only screen and (max-width:600px){
+    .tbl-header{
+        line-height: 1;
+    }
+}

@@ -1,0 +1,8 @@
+<div class="d-flex mr-3" [formGroup]="addProductForm">
+    <img src="../../../../assets/images/minus.svg" class="inc-dec pointer" (click)="decreament(name,10)"  />
+    <input type="text" class="form-control text-center" formControlName="{{name}}"  [ngClass]="{ 'is-invalid': f[name].errors }"
+     pattern="^[0-9]*$" type="text" maxlength="10" placeholder="1111111111"
+      onkeypress="return ( event.charCode !=8 && event.charCode ==0 || 
+        (event.charCode >= 48 && event.charCode <= 57))" autocomplete="off" />
+    <img src="../../../../assets/images/plus.svg" class="float-right inc-dec pointer" (click)="increament(name,10)"/>
+  </div>

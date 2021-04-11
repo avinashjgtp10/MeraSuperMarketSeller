@@ -1,0 +1,272 @@
+<div class="modal-header">
+  <span class="modal-title">Register</span>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<notifier-container style="color: white;"></notifier-container>
+<ng-template #customNotification let-notificationData="notification">
+  <my-custom-alert type="notificationData.type">
+    {{ notificationData.message }}
+  </my-custom-alert>
+</ng-template>
+<div class="modal-body">
+  <div class="container">
+    <div id="stepper1" class="bs-stepper">
+      <div class="bs-stepper-header">
+        <div class="step" data-target="#test-l-1">
+          <button class="step-trigger">
+            <!-- <span class="bs-stepper-circle">1</span> -->
+            <span class="bs-stepper-label">Email</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-2">
+          <button class="step-trigger">
+            <!-- <span class="bs-stepper-circle">2</span> -->
+            <span class="bs-stepper-label">Verify OTP</span>
+          </button>
+        </div>
+        <div class="line"></div>
+        <div class="step" data-target="#test-l-3">
+          <button class="step-trigger">
+            <!-- <span class="bs-stepper-circle">3</span> -->
+            <span class="bs-stepper-label">Register</span>
+          </button>
+        </div>
+      </div>
+      <div class="bs-stepper-content">
+        <form>
+          <div id="test-l-1" class="content">
+            <div class="text-center d-flex flex-column align">
+              <h4 style="color:#999999">Verify your contact details</h4>
+              <label style="color: #999999;" for="exampleInputEmail1">OTP will be send on your mail or mobile number for
+                verification</label>
+              <div class="form-group">
+                <input type="email" class="form-control txt-input" placeholder="Your Email Id" aria-label="mail"
+                  [(ngModel)]="txtEmail" name="txtEmail" />
+                <label *ngIf="emailIsValid && txtEmail" class="m-2 d-flex justify-content-center text-danger">Email is not valid </label>
+                <div class="separator">OR</div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">+91</span>
+                  </div>
+                  <input class="form-control txt-input txt-phone" pattern="^[0-9]*$" type="text" maxlength="10"
+                    placeholder="1111111111" onkeypress="return ( event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" autocomplete="off" [(ngModel)]="txtPhone"
+                    name="txtPhone" />
+                </div>
+              </div>
+              
+              <button [disabled]="!txtEmail && !txtPhone" class="btn btn-block primary-btn"
+                (click)="sendOtp(txtEmail,txtPhone)" appBtn [appBtnStaus]="'success'">
+                <span *ngIf="loading"  class="spinner-border spinner-border-sm mr-4" role="status" aria-hidden="true"></span>Sent OTP</button>
+            </div>
+          </div>
+          <div id="test-l-2" class="content">
+            <div class="form-group text-center d-flex flex-column align justify-center-center">
+              <h4 style="color:#999999">Verify your contact details</h4>
+              <label style="color: #999999;" for="exampleInputEmail1">
+                Please enter OTP we’ve sent you on (091) {{txtPhone}}</label>
+              <div class="m-3">
+                <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:4}"></ng-otp-input>
+              </div>
+
+              <div class="d-flex pr-2 pl-2 m-3">
+                <label class="incorrect">
+                  {{error}}
+                </label>
+                <label class="resend pointer"  *ngIf="!loading" (click)="authorizeToken()">
+                  Resend
+                </label>
+              </div>
+              <div  *ngIf="message" class="alert alert-dismissible fade show"
+                [class.alert-success]="messageType == 'success'"
+                [class.alert-danger]="messageType == 'error'" role="alert">
+                {{message}}
+                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+               </div>
+              <button [disabled]="otp==''" class="btn btn-block primary-btn" appBtn appBtnStaus="success" (click)="authorizeToken()">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-4" role="status" aria-hidden="true"></span>Verify</button>
+            </div>
+          </div>
+          <div id="test-l-3" class="content text-center">
+            <!-- <button type="submit" class="btn btn-primary mt-5">Submit</button> -->
+           
+            <form class="mt-2" [formGroup]="registerForm">
+                <div class="container register-form">
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="UserName">User Name</label>
+                        <input type="text" [attr.disabled]="true" formControlName="UserName" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+                        <!-- <div *ngIf="submitted && f.UserName.errors" class="invalid-feedback">
+                          <div *ngIf="f.UserName.errors.required">User Name is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="MobileNumber">Mobile Number</label>
+                        <input type="text" formControlName="MobileNumber" pattern="^[0-9]*$" type="text" maxlength="10"
+                         class="form-control" [ngClass]="{ 'is-invalid': submitted && f.MobileNumber.errors }" 
+                          onkeypress="return ( event.charCode !=8 && event.charCode ==0 || 
+                          (event.charCode >= 48 && event.charCode <= 57))" autocomplete="off"
+                          />
+                        <!-- <div *ngIf="submitted && f.MobileNumber.errors" class="invalid-feedback">
+                          <div *ngIf="f.MobileNumber.errors.required">Mobile number is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="AddressLine1">Address 1</label>
+                        <input type="text" formControlName="AddressLine1" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.AddressLine1.errors }" />
+                        <!-- <div *ngIf="submitted && f.AddressLine1.errors" class="invalid-feedback">
+                          <div *ngIf="f.AddressLine1.errors.required">User Name is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="AddressLine2">Address 2</label>
+                        <input type="text" formControlName="AddressLine2" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.AddressLine2.errors }" />
+                        <!-- <div *ngIf="submitted && f.AddressLine2.errors" class="invalid-feedback">
+                          <div *ngIf="f.AddressLine2.errors.required">Mobile number is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="AddressLine3">Address 3</label>
+                        <input type="text" formControlName="AddressLine3" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.AddressLine3.errors }" />
+                        <!-- <div *ngIf="submitted && f.AddressLine3.errors" class="invalid-feedback">
+                          <div *ngIf="f.AddressLine3.errors.required">User Name is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="Landmark">Landmark</label>
+                        <input type="text" formControlName="Landmark" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.Landmark.errors }" />
+                        <!-- <div *ngIf="submitted && f.Landmark.errors" class="invalid-feedback">
+                          <div *ngIf="f.Landmark.errors.required">Mobile number is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="ShopName">Shop Name</label>
+                        <input type="text" formControlName="ShopName" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.ShopName.errors }" />
+                        <!-- <div *ngIf="submitted && f.ShopName.errors" class="invalid-feedback">
+                          <div *ngIf="f.ShopName.errors.required">Shop Name is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="State">State</label>
+                        
+                            <ng-select [items]="state" formControlName="State" bindLabel="name" 
+                          
+                             [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
+                            </ng-select>
+                        <!-- <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+                          <div *ngIf="f.State.errors.required">State is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" formControlName="Email" ngbAutoFocus class="form-control" autocomplete="off"
+                          [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                        <!-- <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                          <div *ngIf="f.Email.errors.required">Email is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-sm">
+                      <div class="form-group">
+                        <label for="City">City</label>
+                        <input type="text" formControlName="City" class="form-control" autocomplete="off"
+                          [ngClass]="{ 'is-invalid': submitted && f.City.errors }" />
+                        <!-- <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                          <div *ngIf="f.City.errors.required">City is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                
+                  <div class="row">
+                    <!-- <div class="col-sm">
+                      <div class="form-group">
+                        <label for="Country">Country</label>
+                        
+                          <ng-select  formControlName="Country" bindLabel="Country" 
+                          [ngClass]="{ 'is-invalid': submitted && f.Country.errors }" >
+                          <ng-option *ngFor="let item of country" [value]="item">
+                            {{item}}
+                        </ng-option>
+                          </ng-select>
+                       
+                      </div>
+                    </div> -->
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="Pin">Pin</label>
+                        <input type="text" formControlName="Pin" class="form-control" 
+                        pattern="^[0-9]*$" type="text" maxlength="6"
+                        onkeypress="return ( event.charCode !=8 && event.charCode ==0 || 
+                        (event.charCode >= 48 && event.charCode <= 57))" autocomplete="off"
+                          [ngClass]="{ 'is-invalid': submitted && f.Pin.errors }" />
+                        <!-- <div *ngIf="submitted && f.Pin.errors" class="invalid-feedback">
+                          <div *ngIf="f.Pin.errors.required">Zip is required</div>
+                        </div> -->
+                      </div>
+                    </div>
+
+                  </div>
+                
+                </div>
+                <div class="modal-footer form-group">
+                  <button (click)="activeModal.dismiss('Cross click')" class="btn cancel" appBtn [appBtnStaus]="'cancel'">
+                    Cancel
+                  </button>
+            
+                  <button [disabled]="loading"  class="btn reg" (click)="register()" appBtn [appBtnStaus]="'success'">
+                    <span *ngIf="loading" class=" spinner-border spinner-border-sm mr-1"></span>
+                    Register
+                  </button>
+            
+                </div>
+            
+              </form>
+           
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

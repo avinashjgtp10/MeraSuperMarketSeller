@@ -1,0 +1,56 @@
+<form class="m-3">
+  <div class="form-group form-inline d-flex">
+      <p class="flex-grow-1 justify-content-center"> Coupon Records </p>
+      <input class="form-control ml-2 search-input shadow-sm" placeholder="search" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <!-- <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span> -->
+  </div>
+
+  <table class="table">
+    <thead> 
+    <tr class="card shadow tbl-header">
+      <th scope="col">Coupon Name</th>
+      <th scope="col">Number To Redeem</th>
+      <th scope="col" class="promoDesc">Promo Desc</th>
+      <th scope="col" sortable="amountOff" (sort)="onSort($event)">Amount Off</th>
+      <th scope="col" sortable="upperLimit" (sort)="onSort($event)">Upper Limit</th>
+      <th scope="col" sortable="validFrom" (sort)="onSort($event)">Valid From</th>
+      <th scope="col" sortable="validTill" (sort)="onSort($event)">Valid Till</th>
+      <th scope="col" sortable="userID" (sort)="onSort($event)">User ID</th>
+      <th scope="col" sortable="usageType" (sort)="onSort($event)">Usage Type</th>
+      <th scope="col">CoupenCode</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries$ | async" >
+      <td><ngb-highlight [result]="country.CoupenName" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.NumberToRedeem" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.promoDesc" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.amountOff | number" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.upperLimit" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.validFrom" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.validTill" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.userID" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.usageType" [term]="service.searchTerm"></ngb-highlight></td>
+      <td><ngb-highlight [result]="country.CoupenCode" [term]="service.searchTerm"></ngb-highlight></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="card shadow" style="width: auto; margin: 0 auto;">
+  <div class="d-flex justify-content-between card-header">
+      <div>
+   <label class="lbl">Rows Per Page: </label>
+    <select class="cust-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="5">5</option>
+        <option [ngValue]="10">10</option>
+        <option [ngValue]="20">20</option>
+        <option [ngValue]="25">25</option>
+      </select>
+    </div>
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+    
+  </div>
+</div>
+</form>

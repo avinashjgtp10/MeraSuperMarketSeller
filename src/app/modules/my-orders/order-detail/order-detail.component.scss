@@ -1,0 +1,23 @@
+.card{
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    .card-header{
+        background-color:white;
+        border-radius: 10px 10px 0px 0px;
+    }
+    .card-body{
+        .lbl{
+            opacity: 0.5;
+        }
+        label{
+            font-weight: 600;
+            opacity: 0.8;
+            font-size: smaller;
+        }
+        hr{
+
+            margin: 0;
+        }
+    }
+}

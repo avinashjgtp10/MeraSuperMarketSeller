@@ -1,0 +1,209 @@
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: 0.2;
+}
+
+.custom-class {
+  .modal-content {
+    border-radius: 15px !important;
+    .modal-footer{
+      padding-bottom: 0%;
+    }
+  }
+}
+.modal-body {
+  padding-top: 0%; 
+  padding-bottom: 0%;
+  title {
+    font-weight: 300;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    color: #444444;
+    .limit {
+      color: #d6d9e4;
+    }
+  }
+  img {
+    overflow-y: hidden;
+    // height: 100px;
+    // width: 100px;
+  }
+  .img_wrp {
+    display: inline-block;
+    position: relative;
+  }
+  .img-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 1;
+    cursor: pointer;
+    color: #fff;
+    border: gray;
+    background: #969494;
+    font-size: 12px;
+    padding: 0px 5px;
+    border-radius: 37px;
+    margin: 5%;
+  }
+  .upload-background-image {
+    border: 2px dotted #d6d9e4;
+    border-radius: 30px;
+    height: 150px !important;
+    margin: auto;
+    border-style: dashed;
+  }
+  .ngx-file-drop__content {
+    align-items: center;
+    color: #0782d0;
+    display: flex;
+    height: 100px !important;
+    justify-content: center;
+  }
+  .browse {
+    color: #6ebe44;
+  }
+
+  .form-group {
+    label {
+      margin-bottom: 0%;
+      font-size: 13px;
+      color: #a6a6a6;
+      embed {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    input[type="text"] ,textarea{
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px solid #d0c9d6;
+      outline: none;
+      box-shadow: none;
+      font-size: 14px;
+    }
+    select {
+      border-radius: 0;
+      border: none;
+      border-bottom: 2px solid #d0c9d6;
+      outline: none;
+      box-shadow: none;
+      font-size: 14px;
+      background-image: linear-gradient(45deg, transparent 50%, #444444 60%),
+        linear-gradient(135deg, #444444 40%, transparent 50%) !important;
+      background-position: calc(100% - 30px) 10px, calc(100% - 20px) 10px, 100% 0;
+      background-size: 10px 10px, 10px 10px;
+      background-repeat: no-repeat;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+      background-color: #6fba47;
+      border-color: #6fba47;
+      transform: scale(1.5);
+    }
+
+    .tag {
+      font-size: 10px !important;
+      ::placeholder {
+        color: #6fba47;
+      }
+      input {
+        border: none;
+      }
+    }
+
+    .cloud {
+      width: 32px;
+      margin: 0 auto;
+    }
+    .btn-upload {
+      border-radius: 40px;
+      background-color: #6fba47;
+      color: #ffffff;
+      margin: 0 auto;
+      margin-top: 5%;
+      width: 50%;
+      // height: 50px;
+      // width: 338px;
+    }
+    .spec-div {
+     
+      border-bottom: 2px solid lightgray;
+      .add-new {
+        color: #6fba47;
+        cursor: pointer;
+      }
+      .spec {
+        color: #444444;
+        width: 25%;
+        word-break: break-all;
+      }
+    }
+    .desc {
+      background-color: #efeded;
+      padding: 5%;
+      color: #1c1c1c;
+      border-radius: 10px;
+      font-size: small;
+    }
+    .inc-dec {
+      height:30px;
+      width:25px;
+    }
+  }
+  .form-check-input:checked {
+    background-color: #6fba47;
+    border-color: #6fba47;
+  }
+}
+
+.modal-footer {
+  .btn {
+    height: 48px;
+    width: 130px;
+    border-radius: 40px;
+  }
+  .reg {
+    background-color: #6fba47;
+    color: #ffffff;
+  }
+  .cancel {
+    background-color: #ffffff;
+    border-color: #d0c9d6;
+    color: #000;
+  }
+}
+
+#scrollbar {
+  overflow: hidden i !important;
+}
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 576px) {
+  .modal-body .ngx-file-drop__content {
+    height: 100px !important;
+  }
+  .custom-control-label {
+    cursor: pointer;
+    padding-top: 0% !important;
+  }
+}
