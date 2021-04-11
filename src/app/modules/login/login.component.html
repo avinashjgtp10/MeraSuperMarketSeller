@@ -5,10 +5,12 @@
     {{ notificationData.message }}
   </my-custom-alert>
 </ng-template>
-<nav class="navbar navbar-default navbar-expand-lg static-top bg-white rounded pt-0">
-  <div class="wrapper container col-md-12  col-sm-12">
+<nav
+  class="navbar navbar-default navbar-expand-lg static-top bg-white rounded pt-0"
+>
+  <div class="wrapper container col-md-12 col-sm-12">
     <a class="navbar-brand" href="#">
-      <img src="../../../assets/images/logo.svg">
+      <img src="../../../assets/images/logo.svg" />
     </a>
     <div>
       <ul class="navbar-nav ml-auto">
@@ -22,59 +24,128 @@
 
 <div class="container login-div p-0">
   <div>
-    <img class="svg-image" src="../../../assets/images/bg.svg">
+    <img class="svg-image" src="../../../assets/images/bg.svg" />
   </div>
   <div class="container welcome-div col-md-5 col-sm-5 col-sm">
-    <h2>Welcome to</h2>
-    <h2 class="welcome">Mera Super Market</h2>
-    <label class="otp">OTP will be send on your mail or mobile number for verification</label>
+    <section class="welcome-header">
+      <h2>Welcome to</h2>
+      <h2 class="welcome">Mera Super Market</h2>
+    </section>
+    <label class="otp"
+      >OTP will be send on your mail or mobile number for verification</label
+    >
     <div *ngIf="!isOtpSend">
       <h3>Login</h3>
-      <input type="text" class="form-control" placeholder="Your Email Id" aria-label="mail" [(ngModel)]="txtEmail"
-        name="txtEmail"/>
-        <label *ngIf="emailIsValid && txtEmail" class="m-2 d-flex justify-content-center text-danger">Email is not valid </label>
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Your Email Id"
+        aria-label="mail"
+        [(ngModel)]="txtEmail"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required
+        name="txtEmail"
+        (keyup.enter)="sendOtp(txtEmail,txtPhone)"
+        (input)="txtPhone =''"
+      />
+
+      <label
+        *ngIf="emailIsValid && txtEmail"
+        class="m-2 d-flex justify-content-center text-danger"
+        >Email is not valid
+      </label>
       <div class="separator">OR</div>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">+91</span>
         </div>
-        <input class="form-control" type="text" pattern="^[0-9]*$" type="text" maxlength="10" placeholder="1111111111"
+        <input
+          class="form-control"
+          type="text"
+          pattern="^[0-9]*$"
+          type="text"
+          maxlength="10"
+          placeholder="1111111111"
+          (input)="txtEmail =''"
+          (keyup.enter)="sendOtp(txtEmail,txtPhone)"
           onkeypress="return ( event.charCode !=8 && event.charCode ==0 || 
-            (event.charCode >= 48 && event.charCode <= 57))" autocomplete="off" [(ngModel)]="txtPhone"
-          name="txtPhone" />
+            (event.charCode >= 48 && event.charCode <= 57))"
+          autocomplete="off"
+          [(ngModel)]="txtPhone"
+          name="txtPhone"
+        />
       </div>
-      <label class="d-flex justify-content-center">Resend code in 0:{{counterValue}}</label>
+      <label class="d-flex justify-content-center"
+        >Resend code in 0:{{counterValue}}</label
+      >
+      <app-buttons
+        btnType="primary"
+        label="Send Otp"
+        (onClick)="sendOtp(txtEmail,txtPhone)"
+        [isLoading]="loading"
+        [isDisabled]="!txtEmail && !txtPhone"
+      ></app-buttons>
 
-      <button [disabled]="!txtEmail && !txtPhone" class="btn btn-block" (click)="sendOtp(txtEmail,txtPhone)">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-4" role="status" aria-hidden="true"></span>Sent OTP</button>
-      <label class="d-flex justify-content-center"> Dont have account?
-        <span class="reg-link ml-2 pointer" (click)="register()" >Register</span></label>
+      <label class="d-flex justify-content-center">
+        Dont have account?
+        <span class="reg-link ml-2 pointer" (click)="register()"
+          >Register</span
+        ></label
+      >
     </div>
     <div class="verify-otp" *ngIf="isOtpSend">
       <div class="d-flex align-items-center">
-        <img (click)="isOtpSend=false" src=".././../../assets/images/back.svg" alt="My Happy SVG" />
+        <img
+          (click)="isOtpSend=false"
+          src=".././../../assets/images/back.svg"
+          alt="My Happy SVG"
+        />
         <h5 class="verify-lbl ml-4">Verify Mobile Number</h5>
       </div>
-      <label class="mt-2 d-flex justify-content-center">Please enter OTP we’ve sent you on </label>
-      <label class="mt-2 d-flex justify-content-center"> (+91) {{txtPhone}} </label>
+      <label class="mt-2 d-flex justify-content-center"
+        >Please enter OTP we’ve sent you on
+      </label>
+
+      <label class="mt-2 d-flex justify-content-center">
+        <!-- (+91) {{txtPhone}} -->
+        {{txtEmail||txtPhone}}
+      </label>
 
       <div class="sm-device">
-        <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:4}"></ng-otp-input>
+        <ng-otp-input
+          (onInputChange)="onOtpChange($event)"
+          [config]="{length:4}"
+          (keyup.enter)="authorizeToken()"
+        ></ng-otp-input>
       </div>
-     
-      <div class="d-flex pr-2 pl-2">
-        <!-- <label class="incorrect">
-         {{errors}}
-        </label> -->
-        <label class="resend">
-          Resend
-        </label>
-      </div>
-      <button class="btn btn-block" (click)="authorizeToken()" appBtn appBtnStaus="success">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-4" role="status" aria-hidden="true"></span>Verify</button>
-      <label class="d-flex justify-content-center register"> Dont have account?
-        <span class="reg-link ml-2 pointer" (click)="register()">Register</span></label>
+      <label class="mt-2 d-flex justify-content-center"
+        >{{ responseMessage}}
+      </label>
 
+      <div class="d-flex pr-2 pl-2">
+        <app-buttons
+          btnType="light"
+          label="Resend"
+          (onClick)="sendOtp(txtEmail,txtPhone)"
+        ></app-buttons>
+      </div>
+
+      <app-buttons
+        btnType="primary"
+        label="Verify"
+        (onClick)="authorizeToken()"
+        [isLoading]="loading"
+        [isDisabled]="isOtpValid"
+      ></app-buttons>
+
+      <label class="d-flex justify-content-center register">
+        Dont have account?
+        <app-buttons
+          btnType="light"
+          label="Register"
+          (onClick)="register()"
+        ></app-buttons>
+      </label>
     </div>
   </div>
 </div>

@@ -9,6 +9,17 @@
   opacity: 0.2;
 }
 
+.bs-stepper-header {
+  .bs-stepper-label {
+    color: #6c757d;
+  }
+  .active {
+    .bs-stepper-label {
+      color: #e09541;
+    }
+  }
+}
+
 .custom-class {
   .modal-content {
     border-radius: 15px !important;
@@ -29,11 +40,12 @@
     ng-select.ng-invalid .ng-select-container {
       border-color: #f4516c;
     }
-    .form-control:disabled, .form-control[readonly] {
-      background-color: white; 
+    .form-control:disabled,
+    .form-control[readonly] {
+      background-color: white;
       opacity: 0.8;
-  }
-    
+    }
+
     label {
       margin-bottom: 0%;
       font-size: 12px;
@@ -49,7 +61,7 @@
       outline: none;
       padding-left: 10%;
     }
-   
+
     .input-group {
       // width: 338px;
       .txt-phone {
@@ -69,12 +81,11 @@
       color: #fe0000;
       font-size: 12px;
       width: 66%;
-      
     }
     .resend {
       color: #6ebe44;
       font-size: 14px;
-      
+
       text-align: left;
     }
   }
@@ -110,10 +121,7 @@
     background-color: #6fba47;
     color: #ffffff;
   }
-  .cancel {
-    background-color: #ffffff;
-    border-color: #d0c9d6;
-  }
+  
 }
 
 #scrollbar {
