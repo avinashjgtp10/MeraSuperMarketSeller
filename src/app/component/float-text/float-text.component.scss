@@ -1,0 +1,18 @@
+.text-readonly {
+  background-color: transparent;
+  border: none;
+}
+.input-box {
+  resize: none;
+}
+
+.input-box {
+  width: 100%;
+  border: 1px solid #cccaca !important;
+  border-radius: 5px;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}

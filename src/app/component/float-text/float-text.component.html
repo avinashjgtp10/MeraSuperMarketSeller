@@ -1,0 +1,49 @@
+<div class="border rounded-1">
+  <p class="mb-0">
+    <small>{{label}}</small>
+    <img
+      src="../../../../assets/images/pencil-alt-solid.svg"
+      class="float-right"
+      (click)="isEdit = !isEdit"
+      *ngIf="isEdit"
+    />
+    <img
+      src="../../../../assets/images/selected.svg"
+      class="float-right"
+      (click)="isEdit = !isEdit"
+      *ngIf="!isEdit"
+    />
+  </p>
+  <p class="name" *ngIf="isEdit">{{value}}</p>
+  <textarea
+    type="text"
+    *ngIf="!isEdit && type === 'textArea'"
+    class="input-box name"
+    [ngClass]="isEdit?'text-readonly':''"
+    [value]="value"
+    [readonly]="isEdit"
+    (input)="getValue($event)"
+  ></textarea>
+
+  <input
+    type="tel"
+    *ngIf="!isEdit && type === 'number'"
+    class="input-box name"
+    [ngClass]="isEdit?'text-readonly':''"
+    [value]="value"
+    [readonly]="isEdit"
+    (input)="getValue($event)"
+    maxlength="10"
+  />
+
+  <input
+    type="text"
+    *ngIf="!isEdit && type === 'text'"
+    class="input-box name"
+    [ngClass]="isEdit?'text-readonly':''"
+    [value]="value"
+    [readonly]="isEdit"
+    (input)="getValue($event)"
+  />
+  <label *ngIf="errorMsg">{{errorMsg}}</label>
+</div>

@@ -1,23 +1,34 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AddProductComponent } from '../../model/add-product/add-product.component';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  HostListener,
+} from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { AddProductComponent } from "../../model/add-product/add-product.component";
 import { HostListerService } from "../../helper/host-lister.service";
 import { AppService } from "../../services/app.service";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
+import { NotifierService } from "angular-notifier";
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: "app-home",
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.scss"],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
   screenHeight!: number;
   screenWidth!: number;
   productList: any;
-  constructor(public _modalService: NgbModal,
+
+  constructor(
+    public _modalService: NgbModal,
     private _hostListerService: HostListerService,
     private _appService: AppService,
-    private _activatedRoute: ActivatedRoute) { }
+    private _activatedRoute: ActivatedRoute,
+    private notifier: NotifierService
+  ) {}
 
   ngOnInit(): void {
     this.getScreenSize();
@@ -44,18 +55,48 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  @HostListener('window:resize', ['$event']) onResize(event: any) {
-    this.getScreenSize()
+  @HostListener("window:resize", ["$event"]) onResize(event: any) {
+    this.getScreenSize();
   }
-
 
   addProduct = () => {
-    this._modalService.open(AddProductComponent, { size: 'lg', windowClass: 'custom-class' });
-  }
+    this._modalService.open(AddProductComponent, {
+      size: "lg",
+      windowClass: "custom-class",
+    });
+  };
 
   getAllProduct = () => {
-    this._activatedRoute.data.subscribe(res => {
-      res.data.ReturnValue ? this.productList = res.data.ReturnType : "";
+    this._activatedRoute.data.subscribe((res) => {
+      res.data.ReturnValue ? (this.productList = res.data.ReturnType) : "";
+    });
+  };
+
+  /**
+   * Upload Banner Image
+   */
+  uploadBanner(file: any) {
+    let fileList = file.currentTarget.files[0];
+    let name = fileList.name;
+    const formData = new FormData();
+    formData.append("fileName", name);
+    formData.append("File1", fileList);
+    this._appService.uploadBannerImage(formData).subscribe((response: any) => {
+      this.notifier.notify("success", response);
+    });
+  }
+
+  /**
+   * Upload Profile Image
+   */
+  uploadProfileImage(file: any) {
+    let fileList = file.currentTarget.files[0];
+    let name = fileList.name;
+    const formData = new FormData();
+    formData.append("fileName", name);
+    formData.append("File1", fileList);
+    this._appService.uploadProfileImage(formData).subscribe((response: any) => {
+      this.notifier.notify("success", response);
     });
   }
 }

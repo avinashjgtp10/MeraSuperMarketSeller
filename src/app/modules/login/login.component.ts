@@ -120,11 +120,11 @@ export class LoginComponent implements OnInit {
       .pipe()
       .subscribe(
         (res) => {
-          // localStorage.setItem("AUTH_TOKEN", res.access_token);
-          // localStorage.setItem("USER", JSON.stringify(res));
-          // this.loading = false;
-          // this._router.navigate(["/home"]);
-          // this._authService.sellername.next(res.storeName);
+          localStorage.setItem("AUTH_TOKEN", res.access_token);
+          localStorage.setItem("USER", JSON.stringify(res));
+          this.loading = false;
+          this._router.navigate(["/home"]);
+          this._authService.sellername.next(res.storeName);
         },
         (error) => {
           this.responseMessage = error.error.error_description;

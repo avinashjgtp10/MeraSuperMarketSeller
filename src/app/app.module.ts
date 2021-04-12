@@ -35,6 +35,7 @@ import { CardComponent } from './shared/card/card.component';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { PriceMoverComponent } from './shared/price-mover/price-mover.component';
 import { ButtonsComponent } from './component/buttons/buttons.component';
+import { FloatTextComponent } from './component/float-text/float-text.component';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -69,7 +70,8 @@ const customNotifierOptions: NotifierOptions = {
     FooterComponent,
     CardComponent,
     PriceMoverComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    FloatTextComponent
   ],
   imports: [
     HttpClientModule,
