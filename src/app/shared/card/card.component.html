@@ -1,14 +1,25 @@
 <div class="row d-flex justify-content-center">
-    <section class="card shadow flex-1" *ngFor="let item of productList">
-      <img src="../../../assets/images/product-default.svg" class="card-img-top" alt="...">
+  <section class="col-md-3 p-1" *ngFor="let item of productList">
+    <div class="card shadow product-card">
+      <div class="published-tick" (click)="publishCheck(item)">
+        <div [ngClass]="item.isPublished?'check':'uncheck'"></div>
+      </div>
+      <img
+        src="../../../assets/images/product-default.svg"
+        class="card-img-top"
+        alt="..."
+      />
       <div class="card-body">
         <p class="card-text mb-2">{{item.Title}}</p>
         <div class="d-flex">
           <p class="card-text font-weight-bold m-0">₹ {{item.SellingPrice}}</p>
           <p class="card-text m-0 ml-3"><s>₹ {{item.MRP}}</s></p>
         </div>
-        <p class="card-text m-0 ml-3 mb-2 save" style="color: #f89838;">Save ₹ {{item.MRP-item.SellingPrice}}</p>
+        <p class="card-text m-0 ml-3 mb-2 save" style="color: #f89838;">
+          Save ₹ {{item.MRP-item.SellingPrice}}
+        </p>
         <button class="btn btn-lg btn-block edit">Edit</button>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+</div>

@@ -1,23 +1,37 @@
-.card{
-    width: 80%;
-    margin: 0 auto;
-    border-radius: 10px;
-    .card-header{
-        background-color:white;
-        border-radius: 10px 10px 0px 0px;
+.card {
+  width: 80%;
+  margin: 0 auto;
+  border-radius: 10px;
+  .card-header {
+    background-color: white;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .card-body {
+    .lbl {
+      opacity: 0.5;
     }
-    .card-body{
-        .lbl{
-            opacity: 0.5;
-        }
-        label{
-            font-weight: 600;
-            opacity: 0.8;
-            font-size: smaller;
-        }
-        hr{
-
-            margin: 0;
-        }
+    label {
+      font-weight: 600;
+      opacity: 0.8;
+      font-size: smaller;
     }
+    hr {
+      margin: 0;
+    }
+  }
+}
+.otp-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+}
+.otp-panel p {
+  color: #88b851;
+}
+.otp-panel .btn {
+  background-color: #88b851;
+  color: white;
+  border: none;
 }

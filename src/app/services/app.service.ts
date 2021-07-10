@@ -11,9 +11,13 @@ export class AppService {
   constructor(private _httpService: HttpService) {}
 
   getAllProducts = () => {
-    // return this._httpService.get(environment.authUrl + 'Product','',  this.getAuthHeader());
-    return this._httpService.get("https://api.mocki.io/v1/32dcb2df");
+    return this._httpService.get(
+      environment.authUrl + "Product",
+      "",
+      this.getAuthHeader()
+    );
   };
+
   private getAuthHeader = () => {
     const headers = new HttpHeaders({
       "Content-Type": "application/json",
@@ -26,10 +30,29 @@ export class AppService {
    * Validate Unique Id
    */
   validateUniqueId = (id: any) => {
-    return this._httpService.get(
+    return this._httpService.post(
       environment.authUrl + "Seller/ValidateUniqueId",
       id,
-      this.getAuthHeader()
+      { headers: this.getAuthHeader() }
+    );
+  };
+
+  /**
+   * Add Product Image
+   */
+  addProduct = (id: any) => {
+    return this._httpService.post(environment.authUrl + "Product", id, {
+      headers: this.getAuthHeader(),
+    });
+  };
+  /**
+   * Uplaod Product Image
+   */
+  uploadProducImage = (payload: any) => {
+    return this._httpService.post(
+      environment.authUrl + "FileLoad/UploadProductImage",
+      payload,
+      { headers: this.getAuthHeader() }
     );
   };
 
@@ -50,6 +73,72 @@ export class AppService {
   uploadProfileImage = (payload: any) => {
     return this._httpService.post(
       environment.authUrl + "FileLoad/UploadProfileImage",
+      payload,
+      { headers: this.getAuthHeader() }
+    );
+  };
+
+  /**
+   * Get Seller Details
+   */
+  getSellerDetails = () => {
+    return this._httpService.get(
+      environment.authUrl + "Seller",
+      "",
+      this.getAuthHeader()
+    );
+  };
+
+  /***
+   * Publish Product
+   */
+  publishProduct = (payload: any) => {
+    return this._httpService.put(
+      environment.authUrl + "product/PublishProduct",
+      payload,
+      { headers: this.getAuthHeader() }
+    );
+  };
+
+  /**
+   * Get Product Deatils
+   */
+  getProductCategory = () => {
+    return this._httpService.get(
+      environment.authUrl + "ProductCategory",
+      "",
+      this.getAuthHeader()
+    );
+  };
+
+  /***
+   * Get new Order
+   */
+  getNewOrder = () => {
+    return this._httpService.get(
+      environment.authUrl + "Seller/GetNewOrders",
+      "",
+      this.getAuthHeader()
+    );
+  };
+
+  /**
+   * Get order status
+   */
+  getAllOrderStatus = () => {
+    return this._httpService.get(
+      environment.authUrl + "Order/GetAllOrderStatus",
+      "",
+      this.getAuthHeader()
+    );
+  };
+
+  /**
+   * Get Order details
+   */
+  getOrderDetails = (payload: any) => {
+    return this._httpService.post(
+      environment.authUrl + "Order/GetOrderDetails",
       payload,
       { headers: this.getAuthHeader() }
     );

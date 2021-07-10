@@ -1,146 +1,155 @@
 <section class="d-flex justify-content-center mt-5">
-    <ul *ngFor="let item of orderType">
-        <li [ngClass]="{active: item===activeOrderList}" (click)="activeOrderList=item"> <a>{{item}}</a></li>
-    </ul>
+  <ul *ngFor="let item of orderType">
+    <li
+      [ngClass]="{active: item===activeOrderList}"
+      (click)="activeOrderList=item"
+    >
+      <a>{{item}}</a>
+    </li>
+  </ul>
 </section>
 
-
 <!--Accordion wrapper-->
-<div class="container accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true"
-    style="width: 80%;">
-    <div class="card mb-3 shadow-sm" *ngFor="let item of itemsList let i=index">
-        <!-- Card header -->
-        <div class="card-header" role="tab" id="{{i}}">
-            <a data-toggle="collapse" data-parent="#accordionEx" href="#random{{i}}" aria-expanded="false"
-                aria-controls="collapseOne1">
-                <h5 class="mb-0" (click)="active=i" class="d-flex justify-content-between">
-                    <section class="container">
-                        <section class="px-1">
-                            <section class="">
-                                <section class="row">
-                                    <div class="col-sm col-md">
-                                        <article>Date</article>
-                                        <span>
-                                            24 July 20
-                                        </span>
-                                    </div>
-                                    <div class="col-sm col-md">
-                                        <article>OrderID</article>
-                                        <span>
-                                            ORD12346789
-                                        </span>
-                                    </div>
+<div
+  *ngIf="itemsList.length > 0"
+  class="container accordion md-accordion"
+  id="accordionEx"
+  role="tablist"
+  aria-multiselectable="true"
+  style="width: 80%;"
+>
+  <div
+    class="card mb-3 shadow-sm"
+    *ngFor="let item of itemsList ;let i = index"
+  >
+    <!-- Card header -->
+    <div class="card-header" role="tab" id="{{i}}">
+      <a
+        data-toggle="collapse"
+        data-parent="#accordionEx"
+        href="#random{{i}}"
+        aria-expanded="false"
+        aria-controls="collapseOne1"
+      >
+        <h5
+          class="mb-0"
+          (click)="active=i"
+          class="d-flex justify-content-between"
+        >
+          <section class="container">
+            <section class="px-1">
+              <section class="">
+                <section class="row">
+                  <div class="col-sm col-md">
+                    <article>Date</article>
+                    <span class="accordion-header-info">
+                      {{item.OrderDate | dateFormat}}
+                    </span>
+                  </div>
+                  <div class="col-sm col-md">
+                    <article>OrderID</article>
+                    <span class="accordion-header-info">
+                      {{item?.OrderId}}
+                    </span>
+                  </div>
 
-
-
-                                    <div class="col-sm-2 col-md">
-                                        <article>Mode of Payment</article>
-                                        <span>
-                                            online
-                                        </span>
-                                    </div>
-                                    <div class="col-sm-1 col-md">
-                                        <article>Total</article>
-                                        <span>
-                                            ₹ 360
-                                        </span>
-                                    </div>
-                                    <div class="col-sm col-md">
-                                        <article>Delivery Type</article>
-                                        <span>
-                                            Home
-                                        </span>
-                                    </div>
-                                    <div class="col-sm col-md">
-                                        <article>Status</article>
-                                        <span style="color: #f89838 !important;">Recieved</span>
-                                    </div>
-                                    <div class="col-sm col-md">
-                                        <button class="btn btn-lg btn-block edit" (click)="viewOrderDetails($event);false">Order Details</button>
-                                    </div>
-                                </section>
-                            </section>
-                        </section>
-
-                    </section>
-                    <img src="../../../assets/images/arrow.svg" class="align" [ngClass]="{rotate: i===active}">
-                </h5>
-            </a>
-        </div>
-
-        <!-- Card body -->
-        <div id="random{{i}}" class="collapse" [ngClass]="{show:i===0}" role="tabpanel" aria-labelledby="{{i}}"
-            data-parent="#accordionEx">
-            <div class="card-body row d-flex justify-content-around">
-                <div class=" row flex-1">
-                    <div class="col-sm col-md">
-                        <div class="card border-15 shadow-sm">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <img class="m-3" src="../../../assets/images/dummy-image.png" alt="Card image cap"
-                                        height=60 width=40>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text m-0">Britannia Wheate bread</p>
-                                    <section class="d-flex">
-                                        <p style="flex: 1;">Qty :2</p>
-                                        <p class="font-weight-bold">₹100</p>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm col-md">
-                        <div class="card border-15 shadow-sm">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <img class="m-3" src="../../../assets/images/dummy-image.png" alt="Card image cap"
-                                        height=60 width=40>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text m-0">Britannia Wheate bread</p>
-                                    <section class="d-flex">
-                                        <p style="flex: 1;">Qty :2</p>
-                                        <p class="font-weight-bold">₹100</p>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm col-md">
-                        <div class="card border-15 shadow-sm">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <img class="m-3" src="../../../assets/images/dummy-image.png" alt="Card image cap"
-                                        height=60 width=40>
-                                </div>
-                                <div class="card-body">
-                                    <p class="card-text m-0">Britannia Wheate bread</p>
-                                    <section class="d-flex">
-                                        <p style="flex: 1;">Qty :2</p>
-                                        <p class="font-weight-bold">₹100</p>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md">
-                    <article>Action</article>
-                    <select class="form-control form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
+                  <div class="col-sm-2 col-md">
+                    <article>Mode of Payment</article>
+                    <span class="accordion-header-info">
+                      {{item?.ModeOfPayment}}
+                    </span>
+                  </div>
+                  <div class="col-sm-1 col-md">
+                    <article>Total</article>
+                    <span class="accordion-header-info">
+                      ₹{{item?.Total}}
+                    </span>
+                  </div>
+                  <div class="col-sm col-md">
+                    <article>Delivery Type</article>
+                    <span class="accordion-header-info">
+                      {{item?.DeliveryType}}
+                    </span>
+                  </div>
+                  <div class="col-sm col-md">
+                    <article>Status</article>
+                    <span style="color: #f89838 !important;">Recieved</span>
+                  </div>
+                  <div class="col-sm col-md">
+                    <button
+                      class="btn btn-lg btn-block edit"
+                      (click)="viewOrderDetails(item);false"
+                    >
+                      Order Details
+                    </button>
+                  </div>
+                </section>
+              </section>
+            </section>
+          </section>
+          <img
+            src="../../../assets/images/arrow.svg"
+            class="align"
+            [ngClass]="{rotate: i===active}"
+          />
+        </h5>
+      </a>
     </div>
-    <!-- Accordion card -->
 
-
-
+    <!-- Card body -->
+    <div
+      id="random{{i}}"
+      class="collapse"
+      [ngClass]="{show:i===0}"
+      role="tabpanel"
+      aria-labelledby="{{i}}"
+      data-parent="#accordionEx"
+    >
+      <div class="card-body row d-flex justify-content-around">
+        <!-- <div class="row flex-1"> -->
+        <div class="col-sm-3" *ngFor="let prod of item.Products;let i=index;">
+          <div class="card border-15 shadow-sm">
+            <div class="card-horizontal">
+              <div class="img-square-wrapper">
+                <img
+                  class="m-3"
+                  src="https://merasupermarket.com/{{prod.ImageUrl}}"
+                  alt="Card image cap"
+                  height="60"
+                  width="40"
+                />
+              </div>
+              <div class="card-body">
+                <p class="card-text m-0">{{prod.Name}}</p>
+                <section class="d-flex">
+                  <p style="flex: 1;">Qty:{{prod.Quantity}}</p>
+                  <p class="font-weight-bold">₹{{prod.Price}}</p>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-sm-1 d-flex align-items-center justify-content-center prod-length"
+          *ngIf="productLength > 0"
+        >
+          + {{productLength}} more
+        </div>
+        <div class="col-sm-2">
+          <article>Action</article>
+          <select
+            class="form-control form-select"
+            aria-label="Default select example"
+          >
+            <option [value]="order.Key" *ngFor="let order of actionList"
+              >{{order.Value}}</option
+            >
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Accordion card -->
 </div>
+
 <!-- Accordion wrapper -->

@@ -1,72 +1,74 @@
-
-
 section {
-    ul li {
-        list-style: none;
-        cursor: pointer;
-        color: #d8d8d8;
-    }
-    .active {
-        list-style: none;
-        border-bottom: 3px solid #6fba47;
-        font-weight: 600;
-        color: #444444 !important;
-    }
+  ul li {
+    list-style: none;
+    cursor: pointer;
+    color: #d8d8d8;
+  }
+  .active {
+    list-style: none;
+    border-bottom: 3px solid #6fba47;
+    font-weight: 600;
+    color: #444444 !important;
+  }
 }
 .rotate {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 a:hover {
-    // color: #0056b3;
-    text-decoration: none;
+  // color: #0056b3;
+  text-decoration: none;
 }
 .form-select {
-    border: none;
-    border-bottom: 1px solid;
-    border-radius: 0;
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 0;
 }
 .card-header {
-    background-color: #fdfdfd;
+  background-color: #fdfdfd;
 }
 .card-horizontal {
-    display: flex;
-    flex: 1 1 auto;
+  display: flex;
+  flex: 1 1 auto;
 }
 .border-15 {
-    border-radius: 15px !important;
+  border-radius: 15px !important;
 }
 
 article {
-    color: #d8d8d8;
-    font-size: 16px;
+  color: #d8d8d8;
+  font-size: 16px;
 }
 span {
-    font-weight: 600;
-    color: #444444;
-    font-size: 16px;
+  font-weight: 600;
+  color: #444444;
+  font-size: 16px;
 }
-.card{
-    border-radius: 15px;
-    width:100%;
-
+.card {
+  border-radius: 15px;
+  width: 100%;
 }
 .card-text {
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 13px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 13px;
 }
 section p {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .accordion > .card {
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 15px;
 }
-
+.accordion-header-info {
+  color: #444444;
+  font-family: "RobotoRegular";
+}
+.prod-length {
+  color: #6fba47;
+}
 
 @media only screen and (max-width: 576px) {
-    .align {
-        align-self: self-start;
-    }
+  .align {
+    align-self: self-start;
+  }
 }
-

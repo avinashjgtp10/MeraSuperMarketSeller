@@ -1,87 +1,130 @@
 <section class="d-flex justify-content-center mt-5">
-    <div>
-        <label class="pointer" (click)="gotoMyOrder('my-orders')"> My Orders / </label>
-        <label class="font-weight-bold ml-2"> Order-details</label>
-
-    </div>
+  <div>
+    <label class="pointer" (click)="gotoMyOrder('my-orders')">
+      My Orders /
+    </label>
+    <label class="font-weight-bold ml-2"> Order-details</label>
+  </div>
 </section>
 
-<section class="card mt-3 shadow" style="width: 70%;margin: 0 auto;">
-    <div class="card-header d-flex">
-        <div class="col-md-8 col-sm font-weight-bold">Bill Details</div>
-        <div class="col-md-4 col-sm font-weight-bold">Order Details</div>
-    </div>
-    <div class="card-body">
-        <section class="d-flex row mb-2">
-            <div class="col-md-8">
-                <div>
-                    <label class="col-md-4 col-sm lbl">Customer Name</label>
-                    <label class="col-md-3 col-sm">Rajesh Mishara</label>
-                </div>
-                <div>
-                    <label class="col-md-4 col-sm lbl">Delivery Address</label>
-                    <label class="col-md-6 col-sm">Flat no 106
-                        Darshan Society, Dhanori, Pune Maharashtra
-                    </label>
-                </div>
-                <div>
-                    <label class="col-md-4 col-sm lbl">Phone</label>
-                    <label class="col-md-3 col-sm">9999222384</label>
-                </div>
+<section class="card mt-3 shadow" style="width: 70%; margin: 0 auto;">
+  <div class="card-header d-flex">
+    <div class="col-md-8 col-sm font-weight-bold">Bill Details</div>
+    <div class="col-md-4 col-sm font-weight-bold">Order Details</div>
+  </div>
+  <div class="card-body">
+    <section class="d-flex row mb-2">
+      <div class="col-md-8">
+        <div>
+          <label class="col-md-4 col-sm lbl">Customer Name</label>
+          <label class="col-md-3 col-sm">
+            {{orderDetails?.BillDetail?.CustomerFirstName}}
+            {{orderDetails?.BillDetail?.CustomerLastName}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-4 col-sm lbl">Delivery Address</label>
+          <label class="col-md-6 col-sm">
+            {{orderDetails?.BillDetail?.Address?.AddressLine1 }}
+            {{orderDetails?.BillDetail?.Address?.AddressLine2 }}
+            {{orderDetails?.BillDetail?.Address?.AddressLine3 }}
+            {{orderDetails?.BillDetail?.Address?.City }}
+            {{orderDetails?.BillDetail?.Address?.Country }}
+            {{orderDetails?.BillDetail?.Address?.State }}
+          </label>
+        </div>
+        <div>
+          <label class="col-md-4 col-sm lbl">Phone</label>
+          <label class="col-md-3 col-sm"
+            >{{orderDetails?.BillDetail?.Phone}}</label
+          >
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Order Date</label>
+          <label class="col-md-6 col-sm-6"
+            >{{orderDetails?.OrderDetail?.OrderDate}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Order ID</label>
+          <label class="col-md-6 col-sm-6"
+            >{{orderDetails?.OrderDetail?.OrderId}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Delivery Type</label>
+          <label class="col-md-6 col-sm-6"
+            >{{orderDetails?.OrderDetail?.DeliveryType}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Delivery By</label>
+          <label class="col-md-6 col-sm-6"
+            >{{orderDetails?.OrderDetail?.DeliveryPerson}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Payment</label>
+          <label class="col-md-6 col-sm-6"
+            >{{orderDetails?.OrderDetail?.PaymentMode}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Order Amount</label>
+          <label class="col-md-6 col-sm-6">
+            ₹ {{orderDetails?.OrderDetail?.OrderAmount}}</label
+          >
+        </div>
+        <div>
+          <label class="col-md-6 col-sm-6 lbl">Status</label>
+          <label class="col-md-6 col-sm-6" style="color: #e09541;"
+            >{{orderDetails?.OrderDetail?.OrderStatus}}</label
+          >
+        </div>
+      </div>
+    </section>
 
+    <label style="font-size: 15px;">Order Summary</label>
+    <hr />
+    <section>
+      <div
+        class="row d-flex align-items-baseline"
+        *ngFor="let prod of orderDetails.Products"
+      >
+        <div class="col-md-3 col-sm">
+          <img
+            class="m-3"
+            src="https://merasupermarket.com/{{prod.ImageUrl}}"
+            alt="Card image cap"
+            height="60"
+            width="40"
+          />
+        </div>
 
-            </div>
-            <div class="col-md-4">
-                <div> <label class="col-md-6 col-sm-6 lbl">Order Date</label>
-                    <label class="col-md-6 col-sm-6">24 July 20</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Order ID</label>
-                    <label class="col-md-6 col-sm-6">ORDER123456</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Delivery Type</label>
-                    <label class="col-md-6 col-sm-6">Home Delivery</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Delivery By</label>
-                    <label class="col-md-6 col-sm-6">Royal Grocery Mart</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Payment</label>
-                    <label class="col-md-6 col-sm-6">Online</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Order Amount</label>
-                    <label class="col-md-6 col-sm-6"> ₹ 360</label>
-                </div>
-                <div>
-                    <label class="col-md-6 col-sm-6 lbl">Status</label>
-                    <label class="col-md-6 col-sm-6" style="color: #E09541;">Recieved</label>
-                </div>
-            </div>
-        </section>
-
-        <label style="font-size: 15px;">Order Summary</label>
-        <hr>
-        <section>
-            <div class="row d-flex align-items-baseline">
-                <div class="col-md-3 col-sm"> <img class="m-3" src="../../../assets/images/dummy-image.png"
-                        alt="Card image cap" height=60 width=40></div>
-                <div class="col-md-3 col-sm">
-                    <label class="d-flex lbl"></label>
-                    <label class="d-flex lbl">Dawat Rozana Rice</label></div>
-                <div class="col-md-3 col-sm">
-                    <label class="d-flex lbl">Qty</label>
-                    <label class="d-flex">1</label>
-                </div>
-                <div class="col-md-3 col-sm">
-                    <label class="d-flex lbl">Total</label>
-                    <label class="d-flex"> ₹ 100</label>
-                </div>
-
-            </div>
-        </section>
-    </div>
-
+        <div class="col-md-3 col-sm">
+          <label class="d-flex lbl"></label>
+          <label class="d-flex lbl">{{prod.Name}}</label>
+        </div>
+        <div class="col-md-3 col-sm">
+          <label class="d-flex lbl">Qty</label>
+          <label class="d-flex">{{prod.Quantity}}</label>
+        </div>
+        <div class="col-md-3 col-sm">
+          <label class="d-flex lbl">Total</label>
+          <label class="d-flex"> ₹ {{prod.Price}}</label>
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
+<section class="otp-panel">
+  <p>Enter OTP and Verify to Complete the order</p>
+  <p>
+    <button class="btn btn-secondary" (click)="openOtpModel()">
+      Enter OTP
+    </button>
+  </p>
+</section>
+<app-otp-model #otpModel (myEvent)="verifyOtp($event)"></app-otp-model>

@@ -36,6 +36,9 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { PriceMoverComponent } from './shared/price-mover/price-mover.component';
 import { ButtonsComponent } from './component/buttons/buttons.component';
 import { FloatTextComponent } from './component/float-text/float-text.component';
+import { ReadonlyInputComponent } from './component/readonly-input/readonly-input.component';
+import { OtpModelComponent } from './model/otp-model/otp-model.component';
+import { DateFormatPipe } from './pipe/date/date-format.pipe';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -71,7 +74,10 @@ const customNotifierOptions: NotifierOptions = {
     CardComponent,
     PriceMoverComponent,
     ButtonsComponent,
-    FloatTextComponent
+    FloatTextComponent,
+    ReadonlyInputComponent,
+    OtpModelComponent,
+    DateFormatPipe
   ],
   imports: [
     HttpClientModule,

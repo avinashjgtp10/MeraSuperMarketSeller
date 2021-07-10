@@ -1,0 +1,43 @@
+<div
+  class="modal fade"
+  id="otpModel"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-center" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter OTP</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Enter OTP and Verify to Complete the order</label>
+        <ng-otp-input
+          (onInputChange)="onOtpChange($event)"
+          [config]="{length:4,allowNumbersOnly:false}"
+          (keyup.enter)="authorizeToken()"
+          #ngOtpInput
+        ></ng-otp-input>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="verifyOtp()"
+          [disabled]="otp.length !==  6"
+        >
+          Verify
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+#otpModel .modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  label {
+    color: #88b851;
+  }
+}
+.modal-footer {
+  border: none;
+  display: flex;
+  justify-content: center;
+  .btn {
+    background-color: #6fba47;
+    width: 10rem;
+    border: none;
+  }
+}

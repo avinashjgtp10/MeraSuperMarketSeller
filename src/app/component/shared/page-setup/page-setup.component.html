@@ -1,81 +1,123 @@
-<button
-  type="button"
-  class="close"
-  aria-label="Close"
-  (click)="onPhoneChange()"
-  *ngIf="_showBtn"
->
-  <span aria-hidden="true">&times;</span>
-</button>
 <p class="text-left font-weight-bold">Setup your page</p>
 
 <app-float-text
   label="Your Shop Name"
-  value="Royal Supermarket"
+  [value]="userInfo.ShopName"
   type="textArea"
-  errorMsg=""
+  [errorMsg]="pageObject.shopName.errorMessage"
   (onChange)="shopName($event)"
 ></app-float-text>
 
 <div class="border rounded-1 mt-2">
   <p class="mb-0">
-    <small>Your Address</small>
-    <span class="float-right"><small>Update</small></span>
+    <small>Shope Address</small>
+    <span
+      class="float-right cursor-pointer"
+      (click)="this.isAddressReadonly = !this.isAddressReadonly"
+      ><small>Update</small></span
+    >
   </p>
-  <p class="name text-left mb-0">Flat No 101, first Floor</p>
-  <p class="name text-left mb-0">Lane no 3, Kalyani Nagar</p>
-  <p class="name text-left mb-0">Pune Maharashtra</p>
-  <p class="name text-left mb-0">411015</p>
+  <app-readonly-input
+    inputValue="{{address.AddressLine1}}"
+    placeholder="Enter Address Line1"
+    [isReadonly]="isAddressReadonly"
+    *ngIf="address.AddressLine1 || !isAddressReadonly"
+    (valueChange)="addressLine1($event)"
+  ></app-readonly-input>
+  <label *ngIf="!address.AddressLine1" class="label-err-msg"
+    >{{pageObject.addressLine1.errorMessage}}</label
+  >
+
+  <app-readonly-input
+    inputValue="{{address.AddressLine2}}"
+    placeholder="Enter Address Line2"
+    [isReadonly]="isAddressReadonly"
+    *ngIf="address.AddressLine2 || !isAddressReadonly"
+    (valueChange)="addressLine2($event)"
+  ></app-readonly-input>
+  <app-readonly-input
+    inputValue="{{address.AddressLine3}}"
+    placeholder="Enter Address Line3"
+    [isReadonly]="isAddressReadonly"
+    *ngIf="address.AddressLine3 || !isAddressReadonly"
+    (valueChange)="addressLine3($event)"
+  ></app-readonly-input>
+  <app-readonly-input
+    inputValue="{{address.City}}"
+    placeholder="Enter City"
+    *ngIf="address.City || !isAddressReadonly"
+    [isReadonly]="isAddressReadonly"
+    (valueChange)="addressCity($event)"
+  ></app-readonly-input>
+  <label *ngIf="!address.City" class="label-err-msg"
+    >{{pageObject.city.errorMessage}}</label
+  >
+  <app-readonly-input
+    inputValue="{{address.State}}"
+    placeholder="Enter State"
+    *ngIf="address.State || !isAddressReadonly||  pageObject.state.errorMessage !== ''"
+    [isReadonly]="isAddressReadonly &&   !pageObject.state.errorMessage  "
+    (valueChange)="addressState($event)"
+  ></app-readonly-input>
+  <label *ngIf="!address.State" class="label-err-msg"
+    >{{pageObject.state.errorMessage}}</label
+  >
+  <app-readonly-input
+    inputValue="{{address.Country}}"
+    placeholder="Enter Country"
+    *ngIf="address.Country || !isAddressReadonly||  pageObject.Country.errorMessage !== ''"
+    [isReadonly]="isAddressReadonly &&   !pageObject.Country.errorMessage  "
+    (valueChange)="addCountry($event)"
+  ></app-readonly-input>
+  <label *ngIf="!address.Country" class="label-err-msg"
+    >{{pageObject.Country.errorMessage}}</label
+  >
+  <app-readonly-input
+    inputValue="{{address.Pin}}"
+    placeholder="Enter Pin"
+    [isReadonly]="isAddressReadonly"
+    *ngIf="address.Pin || !isAddressReadonly ||  pageObject.pin.errorMessage !== ''"
+    (valueChange)="addressPin($event)"
+  ></app-readonly-input>
+
+  <label *ngIf="!address.Pin" class="label-err-msg"
+    >{{pageObject.pin.errorMessage}}</label
+  >
 </div>
-
-<app-float-text
-  label="Contact Number"
-  value="9992212345"
-  type="number"
-  [errorMsg]="pageObject.phoneNumber.errorMessage"
-  (onChange)="contactNumber($event)"
-></app-float-text>
-
-<app-float-text
-  label="Unique ID"
-  value="RoyalSupermarket.com"
-  type="text"
-  [errorMsg]="pageObject.uniqueId.errorMessage"
-  (onChange)="uniqueId($event)"
-></app-float-text>
-
+<div class="mt-2">
+  <app-float-text
+    label="Contact Number"
+    [value]="userInfo.Phone"
+    type="number"
+    [errorMsg]="pageObject.phoneNumber.errorMessage"
+    (onChange)="contactNumber($event)"
+  ></app-float-text>
+</div>
+<div class="mt-2">
+  <app-float-text
+    label="Unique ID"
+    [value]="userInfo.UniqueId"
+    type="text"
+    [errorMsg]="pageObject.uniqueId.errorMessage"
+    (onChange)="uniqueId($event)"
+  ></app-float-text>
+</div>
 <div class="mt-2 mt-2 border-bottom">
   <p class="mb-0">
     <small>Unique Link</small>
   </p>
-  <a href="" tabindex="-1">RoyalSupermarket.com</a>
-</div>
-<div class="form-group mt-2">
-  <ngx-file-drop dropZoneLabel="Drop files here">
-    <ng-template
-      ngx-file-drop-content-tmp
-      let-openFileSelector="openFileSelector"
+  <p>
+    <a
+      href="http://www.merasupermarket.com/{{sellerLinkId}}"
+      target="_blank"
+      style="word-break: break-all;"
+      >www.merasupermarket.com/{{sellerLinkId}}</a
     >
-      <div class="d-flex">
-        <img
-          src="../../../../assets/images/add.svg"
-          alt="add Product"
-          style="height: 20px;"
-        />
-        <span
-          class="ml-3"
-          type="button"
-          (click)="openFileSelector()"
-          style="color: #6ebe44;"
-        >
-          Add Product</span
-        >
-      </div>
-    </ng-template>
-  </ngx-file-drop>
+  </p>
 </div>
-<div class="row">
+
+<div class="row mt-2">
   <div class="col text-center">
-    <button class="btn create btn-block" (click)="addProduct()">Create</button>
+    <button class="btn create btn-block" (click)="saveUser()">Save</button>
   </div>
 </div>

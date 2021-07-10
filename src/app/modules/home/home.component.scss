@@ -1,8 +1,10 @@
+@import "variables.scss";
 .banner-img {
   border-radius: 10px;
   width: 100%;
   margin: 0%;
   max-height: 300px;
+  object-fit: cover;
   padding: 0;
 }
 
@@ -46,7 +48,7 @@
 .sellerName {
   font-size: 20px;
   font-weight: 600;
-  color: #77797c;
+  color: $label-gray;
 }
 p {
   color: #77797c;

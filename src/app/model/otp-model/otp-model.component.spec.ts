@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageSetupComponent } from './page-setup.component';
+import { OtpModelComponent } from './otp-model.component';
 
-describe('PageSetupComponent', () => {
-  let component: PageSetupComponent;
-  let fixture: ComponentFixture<PageSetupComponent>;
+describe('OtpModelComponent', () => {
+  let component: OtpModelComponent;
+  let fixture: ComponentFixture<OtpModelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageSetupComponent ]
+      declarations: [ OtpModelComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageSetupComponent);
+    fixture = TestBed.createComponent(OtpModelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

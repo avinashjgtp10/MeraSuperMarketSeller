@@ -93,6 +93,7 @@ export class AuthService {
       this.getHeader()
     );
   };
+  
   registerSeller = (param: any) => {
     return this.httpService.post(
       environment.baseUrl + "account/register",

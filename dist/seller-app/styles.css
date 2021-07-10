@@ -9523,6 +9523,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 .ngx-file-drop__drop-zone {
   border: 2px dotted gray !important;
   border-radius: 10px;
@@ -9699,6 +9702,10 @@ th[sortable].asc:before {
 th[sortable].desc:before {
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
+}
+/**Global**/
+.label-err-msg {
+  color: red;
 }
 @font-face {
     font-family: "RobotoRegular";

@@ -45,5 +45,5 @@
     [readonly]="isEdit"
     (input)="getValue($event)"
   />
-  <label *ngIf="errorMsg">{{errorMsg}}</label>
+  <label *ngIf="errorMsg" class="label-err-msg">{{errorMsg}}</label>
 </div>

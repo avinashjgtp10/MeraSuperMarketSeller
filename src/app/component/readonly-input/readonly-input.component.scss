@@ -1,0 +1,9 @@
+input[readonly] {
+  background: none;
+  border: none !important;
+}
+input[type="text"] {
+  width: 100%;
+  border: 1px solid #cccaca ;
+  border-radius: 5px;
+}

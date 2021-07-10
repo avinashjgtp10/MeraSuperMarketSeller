@@ -13,6 +13,7 @@
 @import "~bs-stepper/dist/css/bs-stepper.min.css";
 @import "angular-notifier/styles";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "variables.scss";
 
 // @import "~bootstrap/scss/_variables.scss";
 // @import "~bootstrap/scss/mixins/_breakpoints.scss";
@@ -35,6 +36,10 @@ body {
 // *::selection {
 //     background: #f89838;
 //   }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 
 .ngx-file-drop__drop-zone {
   border: 2px dotted gray !important;
@@ -226,4 +231,9 @@ th[sortable].asc:before {
 th[sortable].desc:before {
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
+}
+
+/**Global**/
+.label-err-msg {
+  color: $label-err-red;
 }
